@@ -1,16 +1,15 @@
 from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
+from flask_cors import CORS
 import joblib
 import numpy as np
 
-# Load the model
+app = Flask(__name__)
+CORS(app)
+
+
 model = joblib.load('model.joblib')
 
-# Define the class names
 class_names = np.array(['setosa', 'versicolor', 'virginica'])
-
 
 @app.route('/')
 def read_root():
